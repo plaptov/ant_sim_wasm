@@ -1,5 +1,7 @@
 import * as wasm from "ant-sim-wasm";
 
+wasm.init();
+
 const width = 40;
 const height = 40;
 const field = wasm.Field.new(width, height);

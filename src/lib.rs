@@ -3,6 +3,7 @@ mod utils;
 extern crate js_sys;
 
 use wasm_bindgen::prelude::*;
+use utils::set_panic_hook;
 pub mod internals;
 pub mod components;
 
@@ -20,4 +21,9 @@ extern {
 #[wasm_bindgen]
 pub fn greet(name: &str) {
     alert(&format!("Hello, {}!", name));
+}
+
+#[wasm_bindgen]
+pub fn init() {
+    set_panic_hook();
 }
