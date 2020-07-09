@@ -1,26 +1,29 @@
 import * as wasm from "ant-sim-wasm";
+import { FIELD_WIDTH, FIELD_HEIGHT } from "./consts";
+import { iter } from "./system/struct-array-iterator";
 
 wasm.init();
 
-const width = 40;
-const height = 40;
-const field = wasm.Field.new(width, height);
+const field = wasm.Field.new(FIELD_WIDTH, FIELD_HEIGHT);
 
-const cellSizeInBytes = wasm.Cell.size_in_bytes();
-const cellsPtr = field.cells();
+/*
+const canvas = document.getElementById("ant-sim-canvas") as HTMLCanvasElement;
+canvas.height = (CELL_SIZE + 1) * FIELD_HEIGHT + 1;
+canvas.width = (CELL_SIZE + 1) * FIELD_WIDTH + 1;
+const ctx = canvas.getContext('2d');
+*/
+const cells = iter(wasm.Cell, field.cells(), field.width() * field.height());
 
 let str = '';
-let curPtr = cellsPtr - 4; // why -4? i don't know
-for (let x = 0; x < width; x++) {
-    for (let y = 0; y < height; y++) {
-        const obj = Object.create(wasm.Cell.prototype);
-        obj.ptr = curPtr;
-        const cell = obj as wasm.Cell;
-        const is_obstacle = cell.is_obstacle;
-        str += is_obstacle ? '◼' : '◻';
-        curPtr += cellSizeInBytes;
+let x = 0;
+for (let cell of cells) {
+    const is_obstacle = cell.is_obstacle;
+    str += is_obstacle ? '◼' : '◻';
+    x++;
+    if (x === field.width()) {
+        str += '\n';
+        x = 0;
     }
-    str += '\n';
 }
 
 const pre = document.getElementById("ant-sim-canvas");
