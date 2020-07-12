@@ -29,12 +29,12 @@
   "dependencies": {
     "ant-sim-wasm": "file:../pkg",
     "ant-sim-wasm-bg": "file:../pkg",
-    "awesome-typescript-loader": "^5.2.1",
     "source-map-loader": "^0.2.4"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^6.0.3",
     "hello-wasm-pack": "^0.1.0",
+    "ts-loader": "^8.0.0",
     "typescript": "^3.9.6",
     "typescript-tools": "^0.3.1",
     "webpack": "^4.43.0",

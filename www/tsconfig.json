@@ -2,8 +2,22 @@
     "compilerOptions": {
         "outDir": "./built",
         "allowJs": true,
-        "target": "es5",
-        "downlevelIteration": true
+        "target": "esnext",
+		"module": "esnext",
+		"strict": true,
+		"strictNullChecks": false,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noEmitOnError": true,
+		"importHelpers": true,
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		"experimentalDecorators": true,
+		"sourceMap": true,
+		"baseUrl": ".",
     },
     "include": [
         "./**/*"
