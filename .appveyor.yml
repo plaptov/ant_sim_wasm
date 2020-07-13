@@ -9,3 +9,4 @@ build: false
 
 test_script:
   - cargo test --locked --manifest-path rust/Cargo.toml
+  - cargo fmt -v --manifest-path rust/Cargo.toml --message-format human -- --check -v
