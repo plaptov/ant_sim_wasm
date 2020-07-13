@@ -29,14 +29,14 @@ impl Ant {
             is_returning: false,
             is_good_returning: false,
             distance_to_food: 0,
-            current_path: vec![ home ],
+            current_path: vec![home],
         }
     }
 
     fn step_to(&mut self, pos: Coordinate) {
-        if self.is_returning 
-            && self.current_path.len() > 1 
-            && self.current_path.last() == Some(&pos) 
+        if self.is_returning
+            && self.current_path.len() > 1
+            && self.current_path.last() == Some(&pos)
         {
             self.current_path.pop();
         }
@@ -48,10 +48,10 @@ impl Ant {
 
     fn can_move_to(&self, cell: &Cell) -> bool {
         let pos = cell.position;
-        !cell.is_obstacle 
-        && pos != self.current_cell
-        && (self.is_returning || !self.current_path.contains(&pos))
-        && (!self.is_returning || self.current_path.last() == Some(&pos))
+        !cell.is_obstacle
+            && pos != self.current_cell
+            && (self.is_returning || !self.current_path.contains(&pos))
+            && (!self.is_returning || self.current_path.last() == Some(&pos))
     }
 
     fn die(&mut self, field: &mut Field) {
@@ -71,8 +71,7 @@ impl Ant {
             }
         }
 
-        let steps: Vec<&Cell> = 
-            field
+        let steps: Vec<&Cell> = field
             .steps_from_pos(self.current_cell)
             .iter()
             .filter(|x| self.can_move_to(x))
@@ -83,8 +82,7 @@ impl Ant {
             if !self.is_returning {
                 self.is_returning = true;
                 return AntMoveResult::Ok;
-            }
-            else {
+            } else {
                 self.die(field);
                 return AntMoveResult::Died;
             }

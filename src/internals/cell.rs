@@ -41,9 +41,7 @@ impl Cell {
 
     #[inline(always)]
     pub fn get_attraction(&self) -> i32 {
-        10
-        + self.pheromones
-        + self.food
+        10 + self.pheromones + self.food
     }
 
     #[inline(always)]

@@ -1,8 +1,8 @@
-use crate::internals::coordinate::*;
 use crate::internals::cell::*;
-use std::ops::IndexMut;
-use std::fmt;
+use crate::internals::coordinate::*;
 use js_sys::Math;
+use std::fmt;
+use std::ops::IndexMut;
 use wasm_bindgen::prelude::*;
 
 /*
@@ -49,15 +49,13 @@ impl Field {
     pub fn get_cell_copy(&self, x: i32, y: i32) -> Cell {
         self.get(x, y).clone()
     }
-    
+
     pub fn new(width: i32, height: i32) -> Field {
         let mut cells = Vec::new();
         for x in 0..width {
             for y in 0..height {
                 let is_obstacle = Math::random() < 0.2;
-                cells.push(
-                    Cell::new_ex(Coordinate::new(x, y), is_obstacle)
-                );
+                cells.push(Cell::new_ex(Coordinate::new(x, y), is_obstacle));
             }
         }
         Field {
@@ -73,7 +71,6 @@ impl Field {
 }
 
 impl Field {
-
     pub const fn get_cells(&self) -> &Vec<Cell> {
         &self.cells
     }
@@ -87,12 +84,12 @@ impl Field {
     pub fn get(&self, x: i32, y: i32) -> &Cell {
         &self.cells[self.get_index_in_vec(x, y)]
     }
-    
+
     #[inline(always)]
     pub fn get_mut(&mut self, x: i32, y: i32) -> &mut Cell {
         self.cells.index_mut(self.get_index_in_vec(x, y))
     }
-    
+
     #[inline(always)]
     pub fn get_as_mut(&mut self, cell: &Cell) -> &mut Cell {
         self.get_mut(cell.position.x, cell.position.y)
@@ -122,7 +119,7 @@ impl Field {
         let x = cell.position.x;
         let y = cell.position.y;
         let mut steps = Vec::new();
-        let mut push_with_check = | cell: &'a Cell | {
+        let mut push_with_check = |cell: &'a Cell| {
             if !cell.is_obstacle {
                 steps.push(cell);
             }

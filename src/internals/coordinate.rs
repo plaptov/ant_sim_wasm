@@ -10,10 +10,7 @@ pub struct Coordinate {
 
 impl Coordinate {
     pub fn new(x: i32, y: i32) -> Coordinate {
-        Coordinate {
-            x,
-            y,
-        }
+        Coordinate { x, y }
     }
 
     pub fn distance_to(self, other: Coordinate) -> f32 {

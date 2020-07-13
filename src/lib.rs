@@ -2,10 +2,10 @@
 mod utils;
 extern crate js_sys;
 
-use wasm_bindgen::prelude::*;
 use utils::set_panic_hook;
-pub mod internals;
+use wasm_bindgen::prelude::*;
 pub mod components;
+pub mod internals;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -14,7 +14,7 @@ pub mod components;
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
-extern {
+extern "C" {
     fn alert(s: &str);
 }
 

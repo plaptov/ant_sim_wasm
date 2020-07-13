@@ -1,6 +1,6 @@
+use crate::components::ant::*;
 use crate::internals::coordinate::Coordinate;
 use crate::internals::field::Field;
-use crate::components::ant::*;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -11,13 +11,13 @@ pub struct Colony {
 }
 
 impl Colony {
-    
     pub fn new(home: Coordinate, max_ants: usize) -> Colony {
         Colony {
             home,
             max_ants,
             ants: Vec::with_capacity(max_ants),
-        }.inhabit()
+        }
+        .inhabit()
     }
 
     fn inhabit(mut self) -> Self {
@@ -36,12 +36,11 @@ impl Colony {
     pub fn move_ants(&mut self, field: &mut Field) {
         for ant in self.ants.iter_mut() {
             match ant.make_move(field) {
-                AntMoveResult::Ok => {},
+                AntMoveResult::Ok => {}
                 AntMoveResult::Died => {
                     *ant = Ant::new(self.home);
                 }
             }
         }
     }
-
 }
