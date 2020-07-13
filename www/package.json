@@ -27,8 +27,8 @@
   },
   "homepage": "https://github.com/rustwasm/create-wasm-app#readme",
   "dependencies": {
-    "ant-sim-wasm": "file:../pkg",
-    "ant-sim-wasm-bg": "file:../pkg",
+    "ant-sim-wasm": "file:../rust/pkg",
+    "ant-sim-wasm-bg": "file:../rust/pkg",
     "source-map-loader": "^0.2.4"
   },
   "devDependencies": {
