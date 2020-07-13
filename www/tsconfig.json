@@ -16,8 +16,7 @@
 		"moduleResolution": "node",
 		"allowSyntheticDefaultImports": true,
 		"experimentalDecorators": true,
-		"sourceMap": true,
-		"baseUrl": "."
+		"sourceMap": true
     },
     "include": [
         "./**/*"
