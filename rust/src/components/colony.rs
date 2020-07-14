@@ -1,4 +1,4 @@
-use super::{Ant, Coordinate, Field, AntMoveResult};
+use super::{Ant, AntMoveResult, Coordinate, Field};
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]

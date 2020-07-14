@@ -1,6 +1,6 @@
+use super::{Cell, Coordinate, Field};
 use js_sys::Math;
 use wasm_bindgen::prelude::*;
-use super::{Cell, Coordinate, Field};
 
 #[wasm_bindgen]
 pub struct Ant {
