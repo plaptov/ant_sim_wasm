@@ -1,5 +1,4 @@
-use crate::internals::cell::*;
-use crate::internals::coordinate::*;
+use super::{Cell, Coordinate};
 use js_sys::Math;
 use std::fmt;
 use std::ops::IndexMut;

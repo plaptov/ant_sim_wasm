@@ -1,9 +1,6 @@
 use js_sys::Math;
 use wasm_bindgen::prelude::*;
-
-use crate::internals::cell::Cell;
-use crate::internals::coordinate::Coordinate;
-use crate::internals::field::Field;
+use super::{Cell, Coordinate, Field};
 
 #[wasm_bindgen]
 pub struct Ant {

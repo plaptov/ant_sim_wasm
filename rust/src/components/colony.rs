@@ -1,6 +1,4 @@
-use crate::components::ant::*;
-use crate::internals::coordinate::Coordinate;
-use crate::internals::field::Field;
+use super::{Ant, Coordinate, Field, AntMoveResult};
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]

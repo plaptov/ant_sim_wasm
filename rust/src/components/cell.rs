@@ -1,4 +1,4 @@
-use crate::internals::coordinate::*;
+use super::Coordinate;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
