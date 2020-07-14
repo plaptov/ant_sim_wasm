@@ -5,9 +5,9 @@ use wasm_bindgen::prelude::*;
 #[derive(PartialEq, Eq, Debug, Clone)]
 pub struct Cell {
     pub position: Coordinate,
-    pub pheromones: i32,
-    pub food: i32,
-    pub ants: i32,
+    pub pheromones_count: i32,
+    pub food_count: i32,
+    pub ants_count: i32,
     pub is_obstacle: bool,
 }
 
@@ -22,26 +22,26 @@ impl Cell {
     pub fn new(position: Coordinate) -> Cell {
         Cell {
             position,
-            pheromones: 0,
-            food: 0,
+            pheromones_count: 0,
+            food_count: 0,
             is_obstacle: false,
-            ants: 0,
+            ants_count: 0,
         }
     }
 
     pub fn new_ex(position: Coordinate, is_obstacle: bool) -> Cell {
         Cell {
             position,
-            pheromones: 0,
-            food: 0,
+            pheromones_count: 0,
+            food_count: 0,
             is_obstacle,
-            ants: 0,
+            ants_count: 0,
         }
     }
 
     #[inline(always)]
     pub fn get_attraction(&self) -> i32 {
-        10 + self.pheromones + self.food
+        10 + self.pheromones_count + self.food_count
     }
 
     #[inline(always)]
@@ -51,8 +51,8 @@ impl Cell {
 
     #[inline(always)]
     pub fn tick(&mut self) {
-        if self.pheromones > 0 {
-            self.pheromones -= 1;
+        if self.pheromones_count > 0 {
+            self.pheromones_count -= 1;
         }
     }
 }

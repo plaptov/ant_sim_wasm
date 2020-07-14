@@ -153,7 +153,7 @@ impl Field {
 
     pub fn place_food_by_pos(&mut self, pos: Coordinate) {
         let mut cell = self.get_mut_by_pos(pos);
-        cell.food += 10000;
+        cell.food_count += 10000;
     }
 }
 

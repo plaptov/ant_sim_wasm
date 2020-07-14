@@ -1,4 +1,5 @@
 import { ByteSized } from "./byte-sized";
+import { ptrToObj } from './ptr-to-obj';
 
 export function iter<T extends ByteSized, V extends InstanceType<T>>(
     type: T,
@@ -7,8 +8,7 @@ export function iter<T extends ByteSized, V extends InstanceType<T>>(
 ) : StructArrayIterator<V> {
     return new StructArrayIterator<V>(
         pointer - 4,
-        type.prototype,
-        type.size_in_bytes(),
+        type,
         elementsCount
     );
 }
@@ -17,11 +17,10 @@ export class StructArrayIterator<T> implements IterableIterator<T>
 {
     constructor(
         private pointer: number,
-        private readonly prototype: object,
-        private readonly sizeInBytes: number,
+        private readonly type: ByteSized,
         elementsCount: number)
     {
-        this.endAddress = pointer + elementsCount * sizeInBytes;
+        this.endAddress = pointer + elementsCount * type.size_in_bytes();
     }
 
     private readonly endAddress: number;
@@ -32,9 +31,8 @@ export class StructArrayIterator<T> implements IterableIterator<T>
 
     public next() : IteratorResult<T> {
         if (this.pointer < this.endAddress) {
-            const obj = Object.create(this.prototype);
-            obj.ptr = this.pointer;
-            this.pointer += this.sizeInBytes;
+            const obj = ptrToObj(this.type, this.pointer);
+            this.pointer += this.type.size_in_bytes();
             return {
                 value: obj as T,
                 done: false,

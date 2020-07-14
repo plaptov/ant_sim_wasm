@@ -52,7 +52,7 @@ impl Ant {
     }
 
     fn die(&mut self, field: &mut Field) {
-        field.get_mut_by_pos(self.current_cell).ants -= 1;
+        field.get_mut_by_pos(self.current_cell).ants_count -= 1;
     }
 
     pub fn make_move(&mut self, field: &mut Field) -> AntMoveResult {
@@ -99,9 +99,9 @@ impl Ant {
         }
 
         if let Some(pos) = next_pos {
-            field.get_mut_by_pos(self.current_cell).ants -= 1;
+            field.get_mut_by_pos(self.current_cell).ants_count -= 1;
             self.step_to(pos);
-            field.get_mut_by_pos(self.current_cell).ants += 1;
+            field.get_mut_by_pos(self.current_cell).ants_count += 1;
         }
 
         AntMoveResult::Ok
@@ -113,14 +113,14 @@ impl Ant {
 
     pub fn check_current_cell(&mut self, field: &mut Field) {
         let cell = field.get_mut_by_pos(self.current_cell);
-        if cell.food > 0 {
-            cell.food -= 1;
+        if cell.food_count > 0 {
+            cell.food_count -= 1;
             self.distance_to_food = self.current_cell.distance_to(self.home) as i32;
             self.is_returning = true;
             self.is_good_returning = true;
         }
         if self.is_good_returning {
-            cell.pheromones += self.pheromone_count_to_put();
+            cell.pheromones_count += self.pheromone_count_to_put();
         }
     }
 }

@@ -8,7 +8,7 @@ export function renderField(ctx: CanvasRenderingContext2D, field: Field) {
     ctx.strokeStyle = GRID_COLOR;
 
     // Vertical lines.
-    for (let i = 0; i <= height; i++) {
+    for (let i = 0; i <= width; i++) {
         ctx.moveTo(i * (CELL_SIZE + 1) + 1, 0);
         ctx.lineTo(i * (CELL_SIZE + 1) + 1, (CELL_SIZE + 1) * height + 1);
     }
